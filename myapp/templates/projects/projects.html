@@ -1,0 +1,21 @@
+<h1>{{ title }}</h1>
+<nav>
+    <ul>
+        <li>
+            <a href="/">Home</a>
+        </li>
+        <li>
+            <a href="/Task">Task</a>
+        </li>
+    </ul>
+</nav>
+{%block content%}
+
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, magnam? Facere officiis esse, voluptatum alias accusamus rerum delectus non praesentium expedita omnis, reiciendis laudantium! Rem voluptatem minima assumenda atque repellat!</p>
+{%endblock%}
+<!---Jinja Loops-->
+{% for project in projects%}
+<article>
+    <h2>{{ project.name }}</h2>
+</article>
+{%endfor%}
