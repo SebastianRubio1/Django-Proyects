@@ -32,11 +32,18 @@ def projects( request ):
 # Listar una tarea
 def tasks( request ):
     # task = Task.objects.get(id=id)
-    # task = get_object_or_404(Task, id=id)
-    # return HttpResponse("<h1>Task: %s</h1>" % task.title)
+    # taskn HttpResponse("<h1>Task: %s</h1>" % task.title)
     tasks = Task.objects.all()
     return render( request, 'tasks.html', {
         'tasks': tasks
+    })
+
+def tasks_project(request, project_id):
+    project=Project.objects.get(id=project_id)
+    tasks= Task.objects.all().filter(project_id=project_id)
+    return render(request, 'projects/tasks.html',{
+        'project':project.name,
+        'tasks':tasks
     })
 
 def create_task( request ):
@@ -47,6 +54,19 @@ def create_task( request ):
     else: 
         title = request.POST['title']
         description = request.POST['description']
-        project_id = 1
+        project_id = request.POST['project_id']
         Task.objects.create(title=title, description=description, project_id=project_id)
         return redirect('/tasks')
+
+def create_project( request ):
+    if request.method == 'GET':    
+        return render( request, 'create_project.html', {
+            'form': CreateNewTask()
+        })
+    else: 
+        title = request.POST['title']
+        description = request.POST['description']
+        project_id = 1
+        Task.objects.create(title=title, description=description, project_id=project_id)
+        return redirect('/project')
+

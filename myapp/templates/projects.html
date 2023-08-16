@@ -16,6 +16,6 @@
 <!---Jinja Loops-->
 {% for project in projects%}
 <article>
-    <h2>{{ project.name }}</h2>
+    <h2>{{ project.name }}</h2><a href="tasks_project/{{project.id}}">👁‍</a>
 </article>
 {%endfor%}
